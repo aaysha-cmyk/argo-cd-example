@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analytics-ui
+  labels:
+    app: analytics-ui
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: analytics-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: analytics-ui
+    spec:
+      containers:
+        - image: nginx:1.25.0  # Changed to public image
+          imagePullPolicy: Always
+          name: analytics-ui
+          ports:
+            - containerPort: 80  # nginx default port
+              protocol: TCP
