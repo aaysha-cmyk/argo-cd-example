@@ -1,0 +1,14 @@
+replicaCount: 2
+
+image:
+  tag: "1.25.0"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+environment: dev
